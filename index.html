@@ -235,6 +235,33 @@
     justify-content: center;
     color: var(--accent);
     font-size: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .video-thumb img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .video-thumb .play-icon {
+    position: relative;
+    z-index: 2;
+    width: 44px;
+    height: 44px;
+    background: rgba(0,0,0,0.65);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.1rem;
+    transition: background 0.15s;
+  }
+  .video-card:hover .play-icon {
+    background: var(--accent);
   }
   .video-info { padding: 0.6rem 0.75rem 0.75rem; }
   .video-title {
@@ -460,19 +487,19 @@
       <p class="piece-desc">A deliberately low-fi talk/comedy show with musical guests — conceived, written, hosted, and produced independently. Part late-night, part public-access, entirely intentional.</p>
       <div class="video-grid">
         <a class="video-card" href="https://youtu.be/dBspzFG8Lec" target="_blank" rel="noopener">
-          <div class="video-thumb">▶</div>
+          <div class="video-thumb"><img src="https://img.youtube.com/vi/dBspzFG8Lec/hqdefault.jpg" alt="" loading="lazy"><div class="play-icon">▶</div></div>
           <div class="video-info"><p class="video-title">Episode 1</p><p class="video-sub">Punch &amp; Gravy</p></div>
         </a>
         <a class="video-card" href="https://youtu.be/sLlRn8C3O4w" target="_blank" rel="noopener">
-          <div class="video-thumb">▶</div>
+          <div class="video-thumb"><img src="https://img.youtube.com/vi/sLlRn8C3O4w/hqdefault.jpg" alt="" loading="lazy"><div class="play-icon">▶</div></div>
           <div class="video-info"><p class="video-title">Episode 2</p><p class="video-sub">Punch &amp; Gravy</p></div>
         </a>
         <a class="video-card" href="https://youtu.be/_EsO9gzY1gs" target="_blank" rel="noopener">
-          <div class="video-thumb">▶</div>
+          <div class="video-thumb"><img src="https://img.youtube.com/vi/_EsO9gzY1gs/hqdefault.jpg" alt="" loading="lazy"><div class="play-icon">▶</div></div>
           <div class="video-info"><p class="video-title">Episode 3</p><p class="video-sub">Punch &amp; Gravy</p></div>
         </a>
         <a class="video-card" href="https://youtu.be/Gp1K9Nhhil4" target="_blank" rel="noopener">
-          <div class="video-thumb">▶</div>
+          <div class="video-thumb"><img src="https://img.youtube.com/vi/Gp1K9Nhhil4/hqdefault.jpg" alt="" loading="lazy"><div class="play-icon">▶</div></div>
           <div class="video-info"><p class="video-title">Episode 4</p><p class="video-sub">Punch &amp; Gravy</p></div>
         </a>
       </div>
@@ -485,7 +512,7 @@
       <p class="piece-desc">A short-form sitcom about an irascible Gen X terrestrial-radio DJ groping his way toward an understanding of recent modernity — written by Rodat and starring <strong>John Ross Bowie</strong> (<em>The Big Bang Theory</em>, <em>Speechless</em>, <em>Children's Hospital</em>). All episodes written by Rodat, along with an unfilmed traditional half-hour pilot. The short-form videos were produced as a pitch to networks and streaming services. Conversations had begun with <strong>Broadway Video</strong>, Lorne Michaels' production company, before production was suspended due to the illness of a producing partner.</p>
       <div class="video-grid" style="grid-template-columns: 1fr;">
         <a class="video-card" href="https://youtu.be/e33T3T2xOLw" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:0;">
-          <div class="video-thumb" style="min-width:120px; aspect-ratio:16/9; background:var(--lavender);">▶</div>
+          <div class="video-thumb" style="min-width:120px; aspect-ratio:16/9; background:var(--lavender);"><img src="https://img.youtube.com/vi/e33T3T2xOLw/hqdefault.jpg" alt="" loading="lazy"><div class="play-icon">▶</div></div>
           <div class="video-info"><p class="video-title">Barker — Teasers &amp; Takes</p><p class="video-sub">Starring John Ross Bowie &nbsp;·&nbsp; Written by John Rodat &nbsp;·&nbsp; Broadway Video interest</p></div>
         </a>
       </div>
@@ -497,11 +524,11 @@
       <h2 class="piece-title">Short Films</h2>
       <div class="video-grid">
         <a class="video-card" href="https://youtu.be/DcID-MqqMO8" target="_blank" rel="noopener">
-          <div class="video-thumb">▶</div>
+          <div class="video-thumb"><img src="https://img.youtube.com/vi/DcID-MqqMO8/hqdefault.jpg" alt="" loading="lazy"><div class="play-icon">▶</div></div>
           <div class="video-info"><p class="video-title">H.A.H.A.</p><p class="video-sub">For fans of Glengarry Glen Ross &amp; Shakes the Clown</p></div>
         </a>
         <a class="video-card" href="https://youtu.be/WtJL2WtOrak" target="_blank" rel="noopener">
-          <div class="video-thumb">▶</div>
+          <div class="video-thumb"><img src="https://img.youtube.com/vi/WtJL2WtOrak/hqdefault.jpg" alt="" loading="lazy"><div class="play-icon">▶</div></div>
           <div class="video-info"><p class="video-title">Zither Would Be Iffy</p><p class="video-sub">Collar City Film Festival Selection &nbsp;·&nbsp; Troy, NY</p></div>
         </a>
       </div>
@@ -514,14 +541,14 @@
       <p class="piece-desc">Speculative proof-of-concept work developed independently during a brainstorm with a California agency — not work-for-hire, not assigned, made because the creative problem was interesting. Images hand-drawn in a loose, painterly style, then composited and augmented digitally. Both properties are owned by Rodat and each carries series potential well beyond the original brief.</p>
       <div class="video-grid">
         <a class="video-card" href="https://youtu.be/Ly2_LD3ui9M" target="_blank" rel="noopener">
-          <div class="video-thumb" style="background:var(--sage);">▶</div>
+          <div class="video-thumb" style="background:var(--sage);"><img src="https://img.youtube.com/vi/Ly2_LD3ui9M/hqdefault.jpg" alt="" loading="lazy"><div class="play-icon">▶</div></div>
           <div class="video-info">
             <p class="video-title">The Adventures of Dick &amp; VJ</p>
             <p class="video-sub">Hand-drawn animation &nbsp;·&nbsp; Rodat property</p>
           </div>
         </a>
         <a class="video-card" href="https://youtu.be/Ac2XYBIrV-w" target="_blank" rel="noopener">
-          <div class="video-thumb" style="background:var(--sage);">▶</div>
+          <div class="video-thumb" style="background:var(--sage);"><img src="https://img.youtube.com/vi/Ac2XYBIrV-w/hqdefault.jpg" alt="" loading="lazy"><div class="play-icon">▶</div></div>
           <div class="video-info">
             <p class="video-title">Brandi@Nite</p>
             <p class="video-sub">Hand-drawn animation &nbsp;·&nbsp; Rodat property</p>
