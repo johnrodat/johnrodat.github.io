@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>John Rodat — Writer · Editor · Fixer</title>
+<style>
+  /* ── TOKENS ─────────────────────────────────────────────────── */
+  :root {
+    --ink:       #1A1A18;
+    --mid:       #4A4A46;
+    --light:     #88887A;
+    --rule:      #C8C4B0;
+    --bg:        #F7F5F0;
+    --bg-card:   #FFFFFF;
+    --accent:    #26215C;
+    --accent-2:  #6B2D0E;
+    --lavender:  #EEEDFE;
+    --warm:      #FAF0E6;
+    --gold:      #FAEEDA;
+    --sage:      #E8F0EE;
+
+    --font-display: 'Georgia', 'Times New Roman', serif;
+    --font-body:    system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --font-mono:    'Courier New', monospace;
+
+    --max: 780px;
+    --gap: 2.5rem;
+  }
+
+  /* ── RESET ──────────────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  img { display: block; max-width: 100%; }
+
+  /* ── LAYOUT ─────────────────────────────────────────────────── */
+  .container { max-width: var(--max); margin: 0 auto; padding: 0 1.5rem; }
+
+  /* ── NAV ────────────────────────────────────────────────────── */
+  nav {
+    position: sticky;
+    top: 0;
+    background: rgba(247,245,240,0.94);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--rule);
+    z-index: 100;
+    padding: 0.75rem 0;
+  }
+  nav .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  nav .nav-name {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: normal;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+  nav ul {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    flex-wrap: wrap;
+  }
+  nav ul li a {
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--mid);
+    font-weight: 500;
+  }
+  nav ul li a:hover { color: var(--accent); text-decoration: none; }
+
+  /* ── HERO ───────────────────────────────────────────────────── */
+  .hero {
+    padding: 5rem 0 3.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--light);
+    margin-bottom: 1rem;
+    font-family: var(--font-body);
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 6vw, 3.8rem);
+    font-weight: normal;
+    line-height: 1.1;
+    color: var(--accent);
+    margin-bottom: 1.25rem;
+  }
+  .hero-tagline {
+    font-size: 1.05rem;
+    color: var(--mid);
+    max-width: 560px;
+    margin-bottom: 1.75rem;
+    line-height: 1.7;
+  }
+  .hero-contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    font-size: 0.85rem;
+    color: var(--light);
+  }
+  .hero-contact a { color: var(--accent); }
+  .hero-dividers {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+    color: var(--rule);
+    font-size: 0.9rem;
+  }
+
+  /* ── SECTIONS ───────────────────────────────────────────────── */
+  section { padding: var(--gap) 0; border-bottom: 1px solid var(--rule); }
+  section:last-of-type { border-bottom: none; }
+
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--light);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  /* ── PIECE CARDS ────────────────────────────────────────────── */
+  .piece {
+    margin-bottom: 2.25rem;
+    padding-bottom: 2.25rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .piece:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+  .piece-meta {
+    font-size: 0.78rem;
+    color: var(--light);
+    letter-spacing: 0.04em;
+    margin-bottom: 0.3rem;
+    font-family: var(--font-body);
+  }
+  .piece-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: normal;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+  .piece-award {
+    display: inline-block;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: var(--gold);
+    color: var(--accent-2);
+    padding: 0.15rem 0.5rem;
+    border-radius: 2px;
+    margin-bottom: 0.6rem;
+  }
+  .piece-desc {
+    font-size: 0.93rem;
+    color: var(--mid);
+    margin-bottom: 0.75rem;
+    max-width: 620px;
+  }
+  .piece-excerpt {
+    font-family: var(--font-display);
+    font-size: 0.92rem;
+    font-style: italic;
+    color: var(--mid);
+    border-left: 3px solid var(--accent);
+    padding: 0.6rem 0 0.6rem 1rem;
+    margin: 0.75rem 0;
+    max-width: 580px;
+    line-height: 1.7;
+  }
+  .piece-link {
+    font-size: 0.8rem;
+    color: var(--accent);
+    font-family: var(--font-body);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin-top: 0.25rem;
+  }
+  .piece-link::after { content: '→'; }
+  .piece-link:hover { text-decoration: none; color: var(--accent-2); }
+
+  /* ── VIDEO GRID ─────────────────────────────────────────────── */
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-top: 0.75rem;
+  }
+  .video-card {
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: border-color 0.15s;
+  }
+  .video-card:hover { border-color: var(--accent); }
+  .video-thumb {
+    background: var(--lavender);
+    aspect-ratio: 16/9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    font-size: 1.5rem;
+  }
+  .video-info { padding: 0.6rem 0.75rem 0.75rem; }
+  .video-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.2rem;
+    line-height: 1.3;
+  }
+  .video-sub { font-size: 0.75rem; color: var(--light); }
+
+  /* ── RECOGNITION ────────────────────────────────────────────── */
+  .recog-list { list-style: none; }
+  .recog-list li {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.5rem 2rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: start;
+  }
+  .recog-list li:last-child { border-bottom: none; }
+  .recog-title {
+    font-size: 0.93rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .recog-desc {
+    font-size: 0.83rem;
+    color: var(--mid);
+    grid-column: 1 / -1;
+    margin-top: -0.1rem;
+  }
+  .recog-year {
+    font-size: 0.78rem;
+    color: var(--light);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  /* ── ABOUT ──────────────────────────────────────────────────── */
+  .about-text {
+    font-size: 1rem;
+    color: var(--mid);
+    max-width: 600px;
+    line-height: 1.75;
+  }
+  .about-text + .about-text { margin-top: 1rem; }
+
+  /* ── NOVEL BLOCK ────────────────────────────────────────────── */
+  .novel-block {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    background: var(--warm);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 1.25rem;
+  }
+  .novel-spine {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: var(--accent-2);
+    white-space: nowrap;
+    min-width: 1.2rem;
+  }
+  .novel-info h3 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: normal;
+    color: var(--ink);
+    margin-bottom: 0.35rem;
+  }
+  .novel-info p { font-size: 0.88rem; color: var(--mid); }
+  .novel-info p + p { margin-top: 0.4rem; }
+
+  /* ── FOOTER ─────────────────────────────────────────────────── */
+  footer {
+    padding: 2.5rem 0;
+    border-top: 1px solid var(--rule);
+    margin-top: 1rem;
+  }
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-name {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    color: var(--accent);
+  }
+  .footer-links {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.82rem;
+  }
+  .footer-links a { color: var(--mid); }
+  .footer-links a:hover { color: var(--accent); }
+
+  /* ── RESPONSIVE ─────────────────────────────────────────────── */
+  @media (max-width: 560px) {
+    .video-grid { grid-template-columns: 1fr 1fr; }
+    nav ul { gap: 0.9rem; }
+    .recog-list li { grid-template-columns: 1fr; }
+    .recog-year { order: -1; }
+    .novel-block { flex-direction: column; gap: 0.75rem; }
+    .novel-spine { writing-mode: horizontal-tb; transform: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <span class="nav-name">John Rodat</span>
+    <ul>
+      <li><a href="#writing">Writing</a></li>
+      <li><a href="#video">Video</a></li>
+      <li><a href="#novel">Novel</a></li>
+      <li><a href="#recognition">Recognition</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="container">
+    <p class="hero-eyebrow">Portfolio</p>
+    <h1>John Rodat</h1>
+    <p class="hero-tagline">Writer. Editor. Fixer. I write what needs to be written and fix what needs to be fixed — features, criticism, columns, brand voice, scripts, animation, and the occasional humorous novel.</p>
+    <div class="hero-contact">
+      <a href="mailto:johnrodat@gmail.com">johnrodat@gmail.com</a>
+      <span>·</span>
+      <span>(518) 542-5361</span>
+      <span>·</span>
+      <a href="https://linkedin.com/in/johnrodat" target="_blank" rel="noopener">LinkedIn</a>
+      <span>·</span>
+      <span>Schenectady, NY</span>
+    </div>
+  </div>
+</div>
+
+<!-- WRITING -->
+<section id="writing">
+  <div class="container">
+    <p class="section-label">Writing</p>
+
+    <!-- Assumed Identity -->
+    <div class="piece">
+      <p class="piece-meta">Metroland Alternative Newsweekly &nbsp;·&nbsp; Arts Feature &nbsp;·&nbsp; 2005</p>
+      <h2 class="piece-title">Assumed Identity</h2>
+      <p class="piece-desc">A profile of Trevanian — five-million-copy bestselling author, deliberate phantom, and former resident of a forgotten block of North Pearl Street, Albany. Traces the man behind the pseudonym from the city's margins to worldwide literary celebrity and back into silence.</p>
+      <blockquote class="piece-excerpt">"Yet, in 1936, lowly, faded, toothless 238 North Pearl Street would first receive a young man who would go on to be a worldwide best-selling author, and international man of mystery."</blockquote>
+      <a class="piece-link" href="https://metroland.net/back_issues/vol28_no21/arts_feature.html" target="_blank" rel="noopener">Read the piece</a>
+    </div>
+
+    <!-- The Conversation Artist -->
+    <div class="piece">
+      <p class="piece-meta">Metroland Alternative Newsweekly &nbsp;·&nbsp; Arts Feature &nbsp;·&nbsp; 2004</p>
+      <h2 class="piece-title">The Conversation Artist</h2>
+      <span class="piece-award">AAN Arts Feature Finalist 2005</span>
+      <p class="piece-desc">Profile of David Greenberger and his 25-year project <em>The Duplex Planet</em> — a magazine built entirely from conversations with nursing home residents, praised by Matt Groening and Jonathan Lethem. National finalist, Association of Alternative Newsweeklies Arts Feature award, competing across 97 publications.</p>
+      <blockquote class="piece-excerpt">"Envy David Greenberger; envy him for the worst job he ever had."</blockquote>
+      <a class="piece-link" href="https://metroland.net/back_issues/vol_27_no33/arts_feature.html" target="_blank" rel="noopener">Read the piece</a>
+      <br>
+      <a class="piece-link" href="https://aan.org/aan/2005-altweekly-awards-finalists-announced/" target="_blank" rel="noopener">AAN finalist citation</a>
+    </div>
+
+    <!-- Flight and Fight -->
+    <div class="piece">
+      <p class="piece-meta">Metroland Alternative Newsweekly &nbsp;·&nbsp; Art Murmur &nbsp;·&nbsp; 2004</p>
+      <h2 class="piece-title">Flight and Fight</h2>
+      <p class="piece-desc">Profile of musician Simone Felice — then young and largely unknown — written with close-observed physical and emotional attention. Voice-driven scene-setting at its most concentrated.</p>
+      <blockquote class="piece-excerpt">"He could be a runaway or a rock star, rail-thin and unheeding of standard dining-room decorum."</blockquote>
+      <a class="piece-link" href="https://metroland.net/back_issues/vol_26_no49/art_murmur.html" target="_blank" rel="noopener">Read the piece</a>
+    </div>
+
+    <!-- Best Intelligencer -->
+    <div class="piece">
+      <p class="piece-meta">Metroland Alternative Newsweekly &nbsp;·&nbsp; Bi-Weekly Column &nbsp;·&nbsp; 2009–2015</p>
+      <h2 class="piece-title">The Best Intelligencer</h2>
+      <p class="piece-desc">Six years. 150-plus installments. A deadpan satirical column that never once explained the joke. The excerpt below — "Wet Dream Police" — is delivered entirely in the voice of a fictional right-wing foundation's internal strategy meeting.</p>
+      <blockquote class="piece-excerpt">"We here at the Foundation for American Rectitude Triumphant are well aware that your time is valuable. Why, in the time that it took Jerry to adjust the height on that Aeron chair, his company made more than the GNP of all but three First World nations. So, he's leaving the tip today!"</blockquote>
+      <a class="piece-link" href="https://metroland.net/back_issues/vol33_no12/best_intelligencer.html" target="_blank" rel="noopener">Sample column</a>
+      <br>
+      <a class="piece-link" href="https://metroland.net/category/viewpoints/the-best-intelligencer/" target="_blank" rel="noopener">Column archive</a>
+    </div>
+
+    <!-- Chronogram -->
+    <div class="piece">
+      <p class="piece-meta">Chronogram Magazine &nbsp;·&nbsp; Music Criticism &nbsp;·&nbsp; 2020</p>
+      <h2 class="piece-title">Album Review: Bobby Previte / Jamie Saft / Nels Cline</h2>
+      <p class="piece-desc">Technically demanding music made accessible without condescending to the enthusiast or losing the specialist. Demonstrates range across registers — the same writer who profiles emerging folksingers and satirizes the American right can also hold his own in the world of jazz improvisation.</p>
+      <a class="piece-link" href="https://www.chronogram.com/arts/album-review-bobby-previte-jamie-saft-nels-cline-music-from-the-early-21st-century-10858153/" target="_blank" rel="noopener">Read the review</a>
+      <br>
+      <a class="piece-link" href="https://www.chronogram.com/author/john-rodat/" target="_blank" rel="noopener">Full Chronogram archive</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- VIDEO -->
+<section id="video">
+  <div class="container">
+    <p class="section-label">Video &amp; Film</p>
+
+    <!-- Punch & Gravy -->
+    <div class="piece">
+      <p class="piece-meta">Original Series &nbsp;·&nbsp; Creator · Host · Writer &nbsp;·&nbsp; ~2013–2014</p>
+      <h2 class="piece-title">Punch &amp; Gravy</h2>
+      <p class="piece-desc">A deliberately low-fi talk/comedy show with musical guests — conceived, written, hosted, and produced independently. Part late-night, part public-access, entirely intentional.</p>
+      <div class="video-grid">
+        <a class="video-card" href="https://youtu.be/dBspzFG8Lec" target="_blank" rel="noopener">
+          <div class="video-thumb">▶</div>
+          <div class="video-info"><p class="video-title">Episode 1</p><p class="video-sub">Punch &amp; Gravy</p></div>
+        </a>
+        <a class="video-card" href="https://youtu.be/sLlRn8C3O4w" target="_blank" rel="noopener">
+          <div class="video-thumb">▶</div>
+          <div class="video-info"><p class="video-title">Episode 2</p><p class="video-sub">Punch &amp; Gravy</p></div>
+        </a>
+        <a class="video-card" href="https://youtu.be/_EsO9gzY1gs" target="_blank" rel="noopener">
+          <div class="video-thumb">▶</div>
+          <div class="video-info"><p class="video-title">Episode 3</p><p class="video-sub">Punch &amp; Gravy</p></div>
+        </a>
+        <a class="video-card" href="https://youtu.be/Gp1K9Nhhil4" target="_blank" rel="noopener">
+          <div class="video-thumb">▶</div>
+          <div class="video-info"><p class="video-title">Episode 4</p><p class="video-sub">Punch &amp; Gravy</p></div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Barker -->
+    <div class="piece">
+      <p class="piece-meta">Short-Form Sitcom &nbsp;·&nbsp; Writer &nbsp;·&nbsp; ~2013–2014</p>
+      <h2 class="piece-title">Barker</h2>
+      <p class="piece-desc">A short-form sitcom about an irascible Gen X terrestrial-radio DJ groping his way toward an understanding of recent modernity — written by Rodat and starring <strong>John Ross Bowie</strong> (<em>The Big Bang Theory</em>, <em>Speechless</em>, <em>Children's Hospital</em>). All episodes written by Rodat, along with an unfilmed traditional half-hour pilot. The short-form videos were produced as a pitch to networks and streaming services. Conversations had begun with <strong>Broadway Video</strong>, Lorne Michaels' production company, before production was suspended due to the illness of a producing partner.</p>
+      <div class="video-grid" style="grid-template-columns: 1fr;">
+        <a class="video-card" href="https://youtu.be/e33T3T2xOLw" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:0;">
+          <div class="video-thumb" style="min-width:120px; aspect-ratio:16/9; background:var(--lavender);">▶</div>
+          <div class="video-info"><p class="video-title">Barker — Teasers &amp; Takes</p><p class="video-sub">Starring John Ross Bowie &nbsp;·&nbsp; Written by John Rodat &nbsp;·&nbsp; Broadway Video interest</p></div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Short Films -->
+    <div class="piece">
+      <p class="piece-meta">Short Films &nbsp;·&nbsp; ~2013–2014</p>
+      <h2 class="piece-title">Short Films</h2>
+      <div class="video-grid">
+        <a class="video-card" href="https://youtu.be/DcID-MqqMO8" target="_blank" rel="noopener">
+          <div class="video-thumb">▶</div>
+          <div class="video-info"><p class="video-title">H.A.H.A.</p><p class="video-sub">For fans of Glengarry Glen Ross &amp; Shakes the Clown</p></div>
+        </a>
+        <a class="video-card" href="https://youtu.be/WtJL2WtOrak" target="_blank" rel="noopener">
+          <div class="video-thumb">▶</div>
+          <div class="video-info"><p class="video-title">Zither Would Be Iffy</p><p class="video-sub">Collar City Film Festival Selection &nbsp;·&nbsp; Troy, NY</p></div>
+        </a>
+      </div>
+    </div>
+
+    <!-- PSA Animation -->
+    <div class="piece">
+      <p class="piece-meta">Hand-Drawn Animation &nbsp;·&nbsp; Speculative / Proof-of-Concept &nbsp;·&nbsp; ~2013–2014</p>
+      <h2 class="piece-title">Sexual Health PSA Concepts</h2>
+      <p class="piece-desc">Speculative proof-of-concept work developed independently during a brainstorm with a California agency — not work-for-hire, not assigned, made because the creative problem was interesting. Images hand-drawn in a loose, painterly style, then composited and augmented digitally. Both properties are owned by Rodat and each carries series potential well beyond the original brief.</p>
+      <div class="video-grid">
+        <a class="video-card" href="https://youtu.be/Ly2_LD3ui9M" target="_blank" rel="noopener">
+          <div class="video-thumb" style="background:var(--sage);">▶</div>
+          <div class="video-info">
+            <p class="video-title">The Adventures of Dick &amp; VJ</p>
+            <p class="video-sub">Hand-drawn animation &nbsp;·&nbsp; Rodat property</p>
+          </div>
+        </a>
+        <a class="video-card" href="https://youtu.be/Ac2XYBIrV-w" target="_blank" rel="noopener">
+          <div class="video-thumb" style="background:var(--sage);">▶</div>
+          <div class="video-info">
+            <p class="video-title">Brandi@Nite</p>
+            <p class="video-sub">Hand-drawn animation &nbsp;·&nbsp; Rodat property</p>
+          </div>
+        </a>
+      </div>
+      <p style="font-size:0.82rem; color:var(--mid); margin-top:0.85rem; max-width:580px; font-style:italic;">
+        <em>Brandi@Nite</em> in particular carries a fully developed universe: complete character backstory, 
+        a cast of illustrated supporting characters, and a comedic premise that anticipates the 
+        morally complicated adult animation that would later define the form. The animatic shown here 
+        is the origin point of something considerably larger. Both properties are available for 
+        development conversations — though right now, the writer is focused on content strategy work.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- NOVEL -->
+<section id="novel">
+  <div class="container">
+    <p class="section-label">Novel</p>
+    <div class="novel-block">
+      <div class="novel-spine">G.E.N.I.U.S. &amp; Magic</div>
+      <div class="novel-info">
+        <h3>G.E.N.I.U.S. &amp; Magic</h3>
+        <p>A humorous fantasy novel — character-driven, voice-forward, structurally sustained across 300+ pages. The kind of comic writing that requires you to be funny on page 287 with the same conviction as page one.</p>
+        <p>Winner, The Alt Newsweekly Reader's Poll <strong>Best Author, 2018.</strong> Selected by the Times Union's Arts &amp; Entertainment Editor as his favorite book of the year.</p>
+        <p style="margin-top:0.75rem;"><a class="piece-link" href="https://www.amazon.com/G-N-I-U-S-Magic-Chronicles-Maybia/dp/1986967980" target="_blank" rel="noopener">Find on Amazon</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECOGNITION -->
+<section id="recognition">
+  <div class="container">
+    <p class="section-label">Recognition</p>
+    <ul class="recog-list">
+      <li>
+        <span class="recog-title">AAN Arts Feature Finalist</span>
+        <span class="recog-year">2005</span>
+        <span class="recog-desc">"The Conversation Artist," Metroland — national finalist, Association of Alternative Newsweeklies, competing across 97 member publications.</span>
+      </li>
+      <li>
+        <span class="recog-title">Best Author — Alt Newsweekly Reader's Poll</span>
+        <span class="recog-year">2018</span>
+        <span class="recog-desc">For G.E.N.I.U.S. &amp; Magic, voted by readers of the Capital Region's alternative newsweekly.</span>
+      </li>
+      <li>
+        <span class="recog-title">Times Union Editor's Pick</span>
+        <span class="recog-year">2018</span>
+        <span class="recog-desc">Rick Marshall, Arts &amp; Entertainment Editor, Times Union, named G.E.N.I.U.S. &amp; Magic his favorite book of the year.</span>
+      </li>
+      <li>
+        <span class="recog-title">Collar City Film Festival Selection</span>
+        <span class="recog-year">2014</span>
+        <span class="recog-desc">Short digital film selected for public exhibition in the inaugural festival, Troy, NY.</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <p class="section-label">About</p>
+    <p class="about-text">I'm a writer and communicator based in Schenectady, NY, with a parallel career in wine and spirits that has given me deep knowledge of a world most writers don't know from the inside. The two tracks converge more than they diverge: both are fundamentally about making something complex feel worth caring about to someone who didn't already know they cared.</p>
+    <p class="about-text" style="margin-top:1rem;">I've written features, criticism, and a long-running deadpan column for alt-newsweeklies. I've written brand voice, web copy, and thought-leadership content for private clients. I've scripted animation and live-action comedy, hosted a video series, drawn and animated PSA concepts by hand, and written a novel. I hold a certificate in voiceover from Voice Coaches and have a home studio and mobile production kit. I've been performing improv long enough that showing up on camera doesn't feel like showing up on camera.</p>
+    <p class="about-text" style="margin-top:1rem;">Currently available for agency, in-house, or consulting engagements.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <span class="footer-name">John Rodat</span>
+      <div class="footer-links">
+        <a href="mailto:johnrodat@gmail.com">johnrodat@gmail.com</a>
+        <a href="tel:+15185425361">(518) 542-5361</a>
+        <a href="https://linkedin.com/in/johnrodat" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
