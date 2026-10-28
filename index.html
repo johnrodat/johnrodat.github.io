@@ -273,6 +273,86 @@
   }
   .video-sub { font-size: 0.75rem; color: var(--light); }
 
+
+  /* ── ELSEWHERE (ongoing projects & archives) ────────────────── */
+  .elsewhere-intro {
+    font-size: 0.93rem;
+    color: var(--mid);
+    max-width: 600px;
+    margin-bottom: 1.5rem;
+  }
+  .channel-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+  .channel-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    border-top: 4px solid var(--accent);
+    border-radius: 4px;
+    padding: 1.1rem 1.1rem 1rem;
+    color: inherit;
+    transition: border-color 0.15s, transform 0.15s;
+  }
+  .channel-card:hover { text-decoration: none; border-color: var(--accent); transform: translateY(-2px); }
+  .channel-card.fiction { border-top-color: #5B4FB0; }
+  .channel-card.column  { border-top-color: var(--accent-2); }
+  .channel-card.songs   { border-top-color: #3E7A6A; }
+  .channel-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.6rem;
+  }
+  .channel-platform {
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--light);
+  }
+  .channel-status {
+    font-size: 0.66rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.12rem 0.45rem;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+  .status-live    { background: var(--sage);     color: #2C5E50; }
+  .status-archive { background: var(--gold);     color: var(--accent-2); }
+  .status-serial  { background: var(--lavender); color: var(--accent); }
+  .channel-title {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: normal;
+    color: var(--ink);
+    line-height: 1.25;
+    margin-bottom: 0.2rem;
+  }
+  .channel-kind {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--mid);
+    margin-bottom: 0.6rem;
+  }
+  .channel-desc {
+    font-size: 0.85rem;
+    color: var(--mid);
+    line-height: 1.6;
+    flex: 1;
+  }
+  .channel-go {
+    margin-top: 0.9rem;
+    font-size: 0.8rem;
+    color: var(--accent);
+  }
+  .channel-go::after { content: ' →'; }
+
   /* ── RECOGNITION ────────────────────────────────────────────── */
   .recog-list { list-style: none; }
   .recog-list li {
@@ -392,6 +472,7 @@
       <li><a href="#writing">Writing</a></li>
       <li><a href="#video">Video</a></li>
       <li><a href="#novel">Novel</a></li>
+      <li><a href="#elsewhere">Elsewhere</a></li>
       <li><a href="#recognition">Recognition</a></li>
       <li><a href="#about">About</a></li>
     </ul>
@@ -410,6 +491,8 @@
       <span>(518) 542-5361</span>
       <span>·</span>
       <a href="https://linkedin.com/in/johnrodat" target="_blank" rel="noopener">LinkedIn</a>
+      <span>·</span>
+      <a href="https://www.instagram.com/daddytheactress/" target="_blank" rel="noopener">Instagram</a>
       <span>·</span>
       <span>Schenectady, NY</span>
     </div>
@@ -460,6 +543,8 @@
       <a class="piece-link" href="https://metroland.net/back_issues/vol33_no12/best_intelligencer.html" target="_blank" rel="noopener">Sample column</a>
       <br>
       <a class="piece-link" href="https://metroland.net/category/viewpoints/the-best-intelligencer/" target="_blank" rel="noopener">Column archive</a>
+      <br>
+      <a class="piece-link" href="https://www.tumblr.com/thebestintelligencer-blog" target="_blank" rel="noopener">Author's archive &amp; extended cuts</a>
     </div>
 
     <!-- Chronogram -->
@@ -583,6 +668,50 @@
   </div>
 </section>
 
+<!-- ELSEWHERE -->
+<section id="elsewhere">
+  <div class="container">
+    <p class="section-label">Elsewhere &nbsp;·&nbsp; Serials, Songs &amp; Archives</p>
+    <p class="elsewhere-intro">Work made outside of assignments: a surreal fiction serial, a self-kept archive of a column the paper didn't keep, and a running notebook of songs filmed minutes after they were written.</p>
+    <div class="channel-grid">
+
+      <a class="channel-card fiction" href="https://www.tumblr.com/pommedujour-blog" target="_blank" rel="noopener">
+        <div class="channel-top">
+          <span class="channel-platform">Tumblr</span>
+          <span class="channel-status status-serial">Occasional</span>
+        </div>
+        <h2 class="channel-title">Pomme du Jour</h2>
+        <p class="channel-kind">Serial flash fiction</p>
+        <p class="channel-desc">An artsy, surreal experiment in serial flash fiction — short installments that accumulate into something stranger than any one of them. New installments may yet appear.</p>
+        <span class="channel-go">Read the serial</span>
+      </a>
+
+      <a class="channel-card column" href="https://www.tumblr.com/thebestintelligencer-blog" target="_blank" rel="noopener">
+        <div class="channel-top">
+          <span class="channel-platform">Tumblr</span>
+          <span class="channel-status status-archive">Archive</span>
+        </div>
+        <h2 class="channel-title">The Best Intelligencer</h2>
+        <p class="channel-kind">Companion blog to the Metroland column</p>
+        <p class="channel-desc">Kept because the publication wasn't keeping it: an author-maintained archive of the column, plus room to run past the word count the printed page allowed. A selection, not the complete run.</p>
+        <span class="channel-go">Visit the archive</span>
+      </a>
+
+      <a class="channel-card songs" href="https://www.instagram.com/daddytheactress/" target="_blank" rel="noopener">
+        <div class="channel-top">
+          <span class="channel-platform">Instagram</span>
+          <span class="channel-status status-live">Ongoing</span>
+        </div>
+        <h2 class="channel-title">Daddy the Actress</h2>
+        <p class="channel-kind">Songs, written and filmed on the spot</p>
+        <p class="channel-desc">Funny, wry, occasionally tender songs composed more or less spontaneously and filmed more or less immediately. Most are a verse and a chorus — sometimes not the chorus. Sketches, honestly labeled.</p>
+        <span class="channel-go">Watch on Instagram</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
 <!-- RECOGNITION -->
 <section id="recognition">
   <div class="container">
@@ -631,6 +760,7 @@
         <a href="mailto:johnrodat@gmail.com">johnrodat@gmail.com</a>
         <a href="tel:+15185425361">(518) 542-5361</a>
         <a href="https://linkedin.com/in/johnrodat" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.instagram.com/daddytheactress/" target="_blank" rel="noopener">Instagram</a>
       </div>
     </div>
   </div>
