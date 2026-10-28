@@ -304,6 +304,9 @@
   .channel-card.songs   { border-top-color: #3E7A6A; }
   .channel-card.letter  { border-top-color: var(--accent); }
   .status-new { background: var(--accent); color: #fff; }
+  .channel-head { display: flex; align-items: center; gap: 0.85rem; margin-bottom: 0.6rem; }
+  .channel-head .channel-kind { margin-bottom: 0; }
+  .channel-logo { width: 64px; height: 64px; border-radius: 6px; flex-shrink: 0; }
   .channel-top {
     display: flex;
     justify-content: space-between;
@@ -687,8 +690,13 @@
           <span class="channel-platform">Substack</span>
           <span class="channel-status status-new">Now publishing</span>
         </div>
-        <h2 class="channel-title">The Best Intelligencer</h2>
-        <p class="channel-kind">The column, revived as a newsletter</p>
+        <div class="channel-head">
+          <img class="channel-logo" src="images/tbi-logo.png" alt="The Best Intelligencer logo: TBI in a blue circle, graded B+ in red">
+          <div>
+            <h2 class="channel-title">The Best Intelligencer</h2>
+            <p class="channel-kind">The column, revived as a newsletter</p>
+          </div>
+        </div>
         <p class="channel-desc">A deadpan dispatch from John Rodat, philosopher of punch &amp; gravy. The Metroland column returns without a word count, landing directly in the inbox. Free to subscribe.</p>
         <span class="channel-go">Subscribe on Substack</span>
       </a>
